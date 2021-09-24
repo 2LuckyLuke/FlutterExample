@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:untitled/web_api.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,9 +18,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.macio,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Barcode Scanner'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -36,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   String _scanBarcode = "unknown";
 
+
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -48,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff0004', 'Cancel', true, ScanMode.BARCODE);
+          '#003b4a', 'Cancel', true, ScanMode.BARCODE);
       print(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
@@ -63,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +76,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(75.0),
+              child: SvgPicture.asset(
+                  "assets/icons/logo_macio.svg",
+                semanticsLabel: "Macio Logo",
+                color: Colors.macio[500],
+                width: 255,
+              ),
+            ),
             const Text(
               "Press the Button to scan for barcodes",
             ),
