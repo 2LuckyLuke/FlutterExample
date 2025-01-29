@@ -1,6 +1,6 @@
-# untitled
+# Flutter test app
 
-A new Flutter project.
+Very first try of using Flutter.
 
 ## Getting Started
 
